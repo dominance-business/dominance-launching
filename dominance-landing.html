@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMINANCE | Launching Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #0a0a0a;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 750px;
+            opacity: 0;
+            transform: scale(0.7);
+            filter: blur(20px);
+            animation: logoReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            position: relative;
+            margin-bottom: -180px;
+            margin-top: -250px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(230, 51, 41, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            animation: glowPulse 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            pointer-events: none;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes logoReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.7);
+                filter: blur(20px);
+            }
+            50% {
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            opacity: 0;
+            animation: contentReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+        }
+
+        @keyframes contentReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .tagline {
+            text-align: center;
+        }
+
+        .tagline h1 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .tagline h1 span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: letterReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes letterReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tagline p {
+            color: #666666;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeIn 1s ease 2.8s forwards;
+            margin-bottom: 16px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-container {
+            width: 100%;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: formReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
+        }
+
+        @keyframes formReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            gap: 12px;
+        }
+
+        input {
+            flex: 1;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #262626;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        input::placeholder {
+            color: #444444;
+            transition: color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #E63329;
+            background: rgba(230, 51, 41, 0.05);
+            box-shadow: 0 0 30px rgba(230, 51, 41, 0.15);
+        }
+
+        input:focus::placeholder {
+            color: #666666;
+        }
+
+        button {
+            padding: 16px 32px;
+            background: transparent;
+            border: 1px solid #E63329;
+            color: #E63329;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s ease-in-out 3.5s infinite;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(230, 51, 41, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            background: #E63329;
+            color: #0a0a0a;
+            box-shadow: 0 0 40px rgba(230, 51, 41, 0.4);
+            transform: scale(1.02);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(230, 51, 41, 0);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(230, 51, 41, 0.3);
+            }
+        }
+
+        .success-message {
+            display: none;
+            color: #E63329;
+            font-size: 1rem;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #E63329;
+            background: rgba(230, 51, 41, 0.05);
+            animation: successReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes successReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Ambient background animation */
+        .ambient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .ambient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(230, 51, 41, 0.03) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(230, 51, 41, 0.02) 0%, transparent 50%);
+            animation: ambientMove 20s ease-in-out infinite;
+        }
+
+        @keyframes ambientMove {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(2%, 2%) rotate(1deg);
+            }
+            66% {
+                transform: translate(-1%, 1%) rotate(-1deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                gap: 36px;
+            }
+
+            .logo {
+                max-width: 280px;
+            }
+
+            .tagline h1 {
+                font-size: 1.1rem;
+                letter-spacing: 0.2em;
+            }
+
+            .tagline p {
+                font-size: 0.85rem;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                padding: 18px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <img src="DOMINANCE logo white.svg" alt="DOMINANCE">
+        </div>
+        
+        <div class="content">
+            <div class="tagline">
+                <h1 id="headline"></h1>
+                <p>Get ahead of your competition</p>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form action="https://formspree.io/f/mdaznazl" method="POST">
+                <div class="input-group">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <button type="submit">→</button>
+            </form>
+            <div class="success-message">
+                You're on the list.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animated headline reveal
+        const headline = document.getElementById('headline');
+        const text = 'LAUNCHING SOON';
+        
+        // Create spans for each letter
+        text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char;
+            span.style.animationDelay = `${1.8 + (i * 0.05)}s`;
+            headline.appendChild(span);
+        });
+
+        // Form submission
+        const form = document.querySelector('form');
+        const successMessage = document.querySelector('.success-message');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
