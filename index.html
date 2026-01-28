@@ -23,7 +23,12 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        html {
+            overflow-x: hidden;
         }
 
         .container {
@@ -310,6 +315,15 @@
             background: transparent !important;
         }
 
+        .about-btn {
+            background: none !important;
+            border: 0 !important;
+            outline: 0 !important;
+            box-shadow: none !important;
+            -webkit-appearance: none !important;
+            -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+        }
+
         .footer-btn:hover {
             color: #E63329;
             background: transparent;
@@ -514,7 +528,7 @@
         </div>
 
         <div class="footer-buttons">
-            <button class="footer-btn" id="aboutBtn">About</button>
+            <button class="footer-btn about-btn" id="aboutBtn">About</button>
             <a href="mailto:nikita@dominance.business" class="footer-btn">Contact</a>
         </div>
     </div>
